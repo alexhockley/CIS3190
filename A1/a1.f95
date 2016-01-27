@@ -5,7 +5,16 @@ use maze_mod
 implicit none
 
 type(stack_type) :: location_stack
-type(maze_type) :: maze
+character, allocable :: maze_matrix(:,:)
+integer :: rows = 0
+integer :: columns = 0
+character(len=200) :: filename
+
+print*, "Enter filename: "
+read *, filename
+
+print*, filename
+
 
 
 
