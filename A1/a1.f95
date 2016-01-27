@@ -21,13 +21,12 @@ read(2,*) rows, columns
 allocate(maze_matrix(rows,columns))
 
 do i = 1, rows
-  do j = 1, columns
-    read(2,*) temp_val
-    print*, temp_val
-    maze_matrix(i,j) = temp_val
-  end do
+  read(2,*) maze_matrix(i,:)
 end do
 
+do i = 1, rows
+  print*, maze_matrix(i,:)
+end do
 
 close(2)
 deallocate(maze_matrix)
