@@ -29,8 +29,8 @@ module stack_mod
 
       !set up the new stack element
       allocate(current)
-      current%row_val = row_loc
-      current%col_val = col_loc
+      current%row_loc = row_loc
+      current%col_loc = col_loc
       current%prev = stack%top
 
       !set up the stack
@@ -58,6 +58,7 @@ module stack_mod
         before => stack%top%prev
         deallocate(stack%top)
         stack%top = before
+      end if
       return
     end subroutine pop
 
