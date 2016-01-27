@@ -11,7 +11,7 @@ module stack_mod
 
   !define a stack type to have pointer access to the top element of the stack
   type stack_type
-    type(element_type), pointer :: top=>null  !top of the stack, init to null
+    type(element_type), pointer :: top=>null()  !top of the stack, init to null
   end type stack_type
 
   !define subroutines
