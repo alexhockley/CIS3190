@@ -29,8 +29,8 @@ module stack_mod
 
       !set up the new stack element
       allocate(current)
-      current%row_loc = row_loc
-      current%col_loc = col_loc
+      current%row_loc = row_val
+      current%col_loc = col_val
       current%prev = stack%top
 
       !set up the stack
