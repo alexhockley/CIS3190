@@ -1,3 +1,6 @@
 program maze
-print*, hello
+
+implicit none
+print*, "hello"
+
 end program maze
