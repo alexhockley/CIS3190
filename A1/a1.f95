@@ -4,7 +4,7 @@ use stack_mod
 implicit none
 
 type(stack_type) :: location_stack
-character, allocable :: maze_matrix(:,:)
+character, allocatable :: maze_matrix(:,:)
 integer :: rows = 0
 integer :: columns = 0
 character(len=200) :: filename
