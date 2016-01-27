@@ -23,7 +23,9 @@ print*, columns
 allocate(maze_matrix(rows,columns))
 
 do i = 1, rows
-  read(2,*) (maze_matrix(i,j),j=1,columns)
+  do j = 1, columns
+    read(2,"(A)") maze_matrix(i,j)
+  end do
 end do
 
 
