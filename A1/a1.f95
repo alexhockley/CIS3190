@@ -22,7 +22,7 @@ print*, columns
 
 allocate(maze_matrix(rows,columns))
 
-read(2,*) ((maze_matrix(i,:),j=1,columns),i=1,rows) !implicit do structure to read file
+read(2,*) (maze_matrix(i,:),i=1,rows)  !implicit do structure to read file
 
 print*,maze_matrix(:,:)
 
