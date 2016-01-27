@@ -25,7 +25,7 @@ module stack_mod
       integer, intent(in) :: row_val
       integer, intent(in) :: col_val
       type(stack_type), intent(inout) :: stack
-      type(element_type), target :: current
+      type(element_type), pointer :: current
 
       !set up the new stack element
       allocate(current)
