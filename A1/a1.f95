@@ -1,6 +1,5 @@
 program a1
 use stack_mod
-use maze_mod
 
 implicit none
 
