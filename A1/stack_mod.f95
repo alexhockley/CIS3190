@@ -60,7 +60,7 @@ module stack_mod
         stack%top = before
       else
         print*, "Stack is empty, doing nothing"
-      endif
+      end if
       return
     end subroutine pop
 
