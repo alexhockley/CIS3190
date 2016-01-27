@@ -58,9 +58,6 @@ module stack_mod
         before => stack%top%prev
         deallocate(stack%top)
         stack%top = before
-      else
-        print*, "Stack is empty, doing nothing"
-      end if
       return
     end subroutine pop
 
