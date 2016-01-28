@@ -9,7 +9,7 @@ integer :: rows = 0
 integer :: columns = 0
 integer :: i = 0;
 integer :: j = 0;
-character :: temp_val
+character(len=200) :: temp_val
 character(len=200) :: filename
 
 print*, "Enter filename: "
@@ -22,9 +22,11 @@ print*, columns
 
 allocate(maze_matrix(rows,columns))
 
-read(2,*) (maze_matrix(i,:),i=1,rows)  !implicit do structure to read file
-
-print*,maze_matrix(:,:)
+do i=1, rows
+  read(2,*) temp_val
+  maze_matrix (i,:) = temp_val
+end do
+print*, maze_matrix(:,:)
 
 close(2)
 deallocate(maze_matrix)
