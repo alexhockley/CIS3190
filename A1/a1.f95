@@ -23,8 +23,7 @@ print*, columns
 allocate(maze_matrix(rows,columns))
 
 do i=1, rows
-  read(2,*) temp_val
-  maze_matrix (i,:) = temp_val
+  read(2,*) maze_matrix(i,:)
 end do
 print*, maze_matrix(:,:)
 
