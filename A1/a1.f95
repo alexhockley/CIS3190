@@ -4,7 +4,7 @@ use stack_mod
 implicit none
 
 type(stack_type) :: location_stack
-character, allocatable :: maze_matrix(:,:)
+
 integer :: rows = 0
 integer :: columns = 0
 integer :: i = 0;
@@ -20,7 +20,7 @@ read(2,*) rows, columns
 print*, rows
 print*, columns
 
-allocate(maze_matrix(rows,columns))
+character (len=1), dimension(rows,columns) :: maze_matrix
 
 do i=1, rows
   read(2,*) maze_matrix(i,:)
