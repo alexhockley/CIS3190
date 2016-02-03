@@ -25,7 +25,8 @@ print*, columns
 
 do i=1, rows
   do j=1, columns
-  read(2,'(A1)') maze_matrix(i,j)
+    read(2,'(A1)') maze_matrix(i,j)
+  end do
 end do
 
 close(2)
