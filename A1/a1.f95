@@ -9,6 +9,8 @@ integer :: rows = 0
 integer :: columns = 0
 integer :: i = 0
 integer :: j = 0
+integer :: i2 = 0
+integer :: j2 = 0
 integer :: linelen = 0
 character(len=1000) :: temp_val
 character(len=200) :: filename
@@ -36,13 +38,13 @@ do i=1, rows
 end do
 
 !find start
-do i=1, rows
-  do j=1, columns
-    if maze_matrix(i,j) .eq. 's'
+do i2=1, rows
+  do j2=1, columns
+    if (maze_matrix(i2,j2) .eq. 's')
       cur_row = i
       cur_col = j
-      i = rows+1
-      j + rows+1
+      i2 = rows+1
+      j2 = rows+1
     end if
   end do
 end do
