@@ -11,6 +11,7 @@ integer :: i = 0;
 integer :: j = 0;
 character(len=200) :: temp_val
 character(len=200) :: filename
+character (len=1), dimension(1000,1000) :: maze_matrix
 
 print*, "Enter filename: "
 read *, filename
@@ -20,13 +21,12 @@ read(2,*) rows, columns
 print*, rows
 print*, columns
 
-character (len=1), dimension(rows,columns) :: maze_matrix
+
 
 do i=1, rows
-  read(2,*) maze_matrix(i,:)
+  do j=1, columns
+  read(2,'(A1)') maze_matrix(i,j)
 end do
-print*, maze_matrix(:,:)
 
 close(2)
-deallocate(maze_matrix)
 end program a1
