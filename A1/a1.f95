@@ -11,6 +11,7 @@ integer :: i = 0
 integer :: j = 0
 integer :: i2 = 0
 integer :: j2 = 0
+integer :: loop_flag = 0
 integer :: linelen = 0
 character(len=1000) :: temp_val
 character(len=200) :: filename
@@ -41,12 +42,15 @@ end do
 do i2=1, rows
   do j2=1, columns
     if (maze_matrix(i2,j2) .eq. 's')
-      cur_row = i
-      cur_col = j
-      i2 = rows+1
-      j2 = rows+1
+      cur_row = i2
+      cur_col = j2
+      loop_flag = 1
+      break
     end if
   end do
+  if (loop_flag == 1)
+    break
+  end if
 end do
 
 push(cur_row, cur_col,location_stack)
