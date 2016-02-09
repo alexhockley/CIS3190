@@ -37,7 +37,9 @@ do i=1, rows
     maze_matrix(i,j) = temp_val(j:j)
   end do
 end do
+print*, 'Done reading matrix'
 
+print*, 'Finding start'
 !find start
 do i2=1, rows
   do j2=1, columns
@@ -52,6 +54,9 @@ do i2=1, rows
     exit
   end if
 end do
+print*, 'Done finding start'
+print*, cur_row
+print*, cur_col
 
 call push(cur_row, cur_col,location_stack)
 do while (associated(location_stack%top))
