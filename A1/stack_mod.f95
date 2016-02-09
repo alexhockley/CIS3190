@@ -14,6 +14,9 @@ module stack_mod
     type(element_type), pointer :: top=>null()  !top of the stack, init to null
   end type stack_type
 
+  public :: push
+  public :: pop
+
   !define subroutines
   contains
 
