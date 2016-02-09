@@ -41,14 +41,14 @@ end do
 !find start
 do i2=1, rows
   do j2=1, columns
-    if (maze_matrix(i2,j2) .eq. 's')
+    if (maze_matrix(i2,j2) .eq. 's') then
       cur_row = i2
       cur_col = j2
       loop_flag = 1
       break
     end if
   end do
-  if (loop_flag == 1)
+  if (loop_flag .eq. 1) then
     break
   end if
 end do
@@ -58,7 +58,7 @@ do while (associated(location_stack%top))
   pop(location_stack, cur_row, cur_col)
 
   !if we are at the end
-  if maze_matrix(cur_row, cur_col) .eq. 'e'
+  if (maze_matrix(cur_row, cur_col) .eq. 'e') then
     print*, "Maze traversed"
 
     !empty the stack
@@ -66,7 +66,7 @@ do while (associated(location_stack%top))
       pop(location_stack, cur_row, cur_col)
     end do
 
-  else if maze_matrix(cur_row, cur_col) .ne. '*' or maze_matrix(cur_row, cur_col) .ne. 'v'
+  else if (maze_matrix(cur_row, cur_col) .ne. '*' or maze_matrix(cur_row, cur_col) .ne. 'v') then
     maze_matrix(cur_row, cur_col) = 'v'
     push(cur_row, cur_col+1, location_stack)
     push(cur_row, cur_col-1, location_stack)
