@@ -53,7 +53,7 @@ do i2=1, rows
   end if
 end do
 
-push(cur_row, cur_col,location_stack)
+call push(cur_row, cur_col,location_stack)
 do while (associated(location_stack%top))
   call pop(location_stack, cur_row, cur_col)
 
@@ -66,7 +66,7 @@ do while (associated(location_stack%top))
       call pop(location_stack, cur_row, cur_col)
     end do
 
-  else if (maze_matrix(cur_row, cur_col) .ne. '*' or maze_matrix(cur_row, cur_col) .ne. 'v') then
+  else if (maze_matrix(cur_row, cur_col) .ne. '*' .or. maze_matrix(cur_row, cur_col) .ne. 'v') then
     maze_matrix(cur_row, cur_col) = 'v'
     call push(cur_row, cur_col+1, location_stack)
     call push(cur_row, cur_col-1, location_stack)
