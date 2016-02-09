@@ -80,6 +80,7 @@ if (found_flag == 1) then
   print*, "Maze traversed successfully"
 else
   print*, "Exit not found"
+end if
 
 close(2)
 end program a1
