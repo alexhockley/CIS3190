@@ -35,7 +35,6 @@ do i=1, rows
     maze_matrix(i,j) = temp_val(j:j)
   end do
 end do
-print*, 'Done reading matrix'
 
 !find start
 do i2=1, rows
