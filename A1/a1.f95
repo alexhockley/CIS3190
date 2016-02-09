@@ -26,8 +26,6 @@ read *, filename
 
 open(unit=2, file=filename)
 read(2,*) rows, columns
-print*, rows
-print*, columns
 
 
 do i=1, rows
@@ -39,7 +37,6 @@ do i=1, rows
 end do
 print*, 'Done reading matrix'
 
-print*, 'Finding start'
 !find start
 do i2=1, rows
   do j2=1, columns
@@ -54,13 +51,13 @@ do i2=1, rows
     exit
   end if
 end do
-print*, 'Done finding start'
-print*, cur_row
-print*, cur_col
 
 call push(cur_row, cur_col,location_stack)
 do while (associated(location_stack%top))
   call pop(location_stack, cur_row, cur_col)
+
+  !if(cur_row > rows .or. cur_col > cols) then
+  !   cycle
 
   !if we are at the end
   if (maze_matrix(cur_row, cur_col) .eq. 'e') then
@@ -71,7 +68,7 @@ do while (associated(location_stack%top))
       call pop(location_stack, cur_row, cur_col)
     end do
 
-  else if (maze_matrix(cur_row, cur_col) .ne. '*' .or. maze_matrix(cur_row, cur_col) .ne. 'v') then
+  else if (maze_matrix(cur_row, cur_col) .ne. '*' .and. maze_matrix(cur_row, cur_col) .ne. 'v') then
     maze_matrix(cur_row, cur_col) = 'v'
     call push(cur_row, cur_col+1, location_stack)
     call push(cur_row, cur_col-1, location_stack)

@@ -34,10 +34,10 @@ module stack_mod
       allocate(current)
       current%row_loc = row_val
       current%col_loc = col_val
-      current%prev = stack%top
+      current%prev => stack%top
 
       !set up the stack
-      stack%top = current
+      stack%top => current
 
       return
     end subroutine push
@@ -60,7 +60,7 @@ module stack_mod
         !now remove the last element
         before => stack%top%prev
         deallocate(stack%top)
-        stack%top = before
+        stack%top => before
       end if
       return
     end subroutine pop
