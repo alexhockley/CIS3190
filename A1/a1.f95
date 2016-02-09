@@ -55,7 +55,7 @@ end do
 
 push(cur_row, cur_col,location_stack)
 do while (associated(location_stack%top))
-  pop(location_stack, cur_row, cur_col)
+  call pop(location_stack, cur_row, cur_col)
 
   !if we are at the end
   if (maze_matrix(cur_row, cur_col) .eq. 'e') then
@@ -63,15 +63,15 @@ do while (associated(location_stack%top))
 
     !empty the stack
     do while (associated(location_stack%top))
-      pop(location_stack, cur_row, cur_col)
+      call pop(location_stack, cur_row, cur_col)
     end do
 
   else if (maze_matrix(cur_row, cur_col) .ne. '*' or maze_matrix(cur_row, cur_col) .ne. 'v') then
     maze_matrix(cur_row, cur_col) = 'v'
-    push(cur_row, cur_col+1, location_stack)
-    push(cur_row, cur_col-1, location_stack)
-    push(cur_row-1, cur_col, location_stack)
-    push(cur_row+1, cur_col, location_stack)
+    call push(cur_row, cur_col+1, location_stack)
+    call push(cur_row, cur_col-1, location_stack)
+    call push(cur_row-1, cur_col, location_stack)
+    call push(cur_row+1, cur_col, location_stack)
   end if
 end do
 
