@@ -20,7 +20,6 @@ character (len=1), dimension(1000,1000) :: maze_matrix
 
 integer :: cur_row = 1;
 integer :: cur_col = 1;
-type(element_type), pointer :: temp_elem
 
 print*, "Enter filename: "
 read *, filename
