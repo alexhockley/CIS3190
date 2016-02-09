@@ -12,6 +12,7 @@ integer :: j = 0
 integer :: i2 = 0
 integer :: j2 = 0
 integer :: loop_flag = 0
+integer :: found_flag = 0
 integer :: linelen = 0
 character(len=1000) :: temp_val
 character(len=200) :: filename
@@ -56,12 +57,10 @@ call push(cur_row, cur_col,location_stack)
 do while (associated(location_stack%top))
   call pop(location_stack, cur_row, cur_col)
 
-  !if(cur_row > rows .or. cur_col > cols) then
-  !   cycle
 
   !if we are at the end
   if (maze_matrix(cur_row, cur_col) .eq. 'e') then
-    print*, "Maze traversed"
+    found_flag = 1
 
     !empty the stack
     do while (associated(location_stack%top))
@@ -77,6 +76,10 @@ do while (associated(location_stack%top))
   end if
 end do
 
+if (found_flag == 1) then
+  print*, "Maze traversed successfully"
+else
+  print*, "Exit not found"
 
 close(2)
 end program a1
