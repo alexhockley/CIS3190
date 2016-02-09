@@ -45,11 +45,11 @@ do i2=1, rows
       cur_row = i2
       cur_col = j2
       loop_flag = 1
-      break
+      exit
     end if
   end do
   if (loop_flag .eq. 1) then
-    break
+    exit
   end if
 end do
 
