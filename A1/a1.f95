@@ -41,7 +41,7 @@ end do
 !find start
 do i2=1, rows
   do j2=1, columns
-    if (maze_matrix(i2,j2) .eq. 's') then
+    if (maze_matrix(i2,j2) .eq. 'o') then
       cur_row = i2
       cur_col = j2
       loop_flag = 1
