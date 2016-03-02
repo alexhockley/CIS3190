@@ -10,6 +10,7 @@ procedure A2 is
 
   File            : Text_IO.File_Type;
   Char_Temp       : Character;
+  Int_Temp        : Integer;
 
   type Puzzle_Type is array (1..9,1..9) of Integer;
 
@@ -28,10 +29,11 @@ begin
 
   While not Text_IO.End_Of_File (File) loop
     Text_IO.Get(File=>File, Item=>Char_Temp);
+    Int_Temp := Character'Pos(Char_Temp)-48;
 
-    if(Character'Pos(Char_Temp)-48 > 0 ^ Character'Pos(Char_Temp)-48 < 10) then
+    if Int_Temp > 0 ^ Int_Temp < 10 then
       if Col_Counter <= 9 then
-        Puzzle(Row_Counter,Col_Counter) := Character'Pos(Char_Temp) - 48;
+        Puzzle(Row_Counter,Col_Counter) := Int_Temp;
         Row_Counter := Row_Counter + 1;
       end if;
     end if;
