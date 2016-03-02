@@ -21,4 +21,15 @@ begin
 
   Text_IO.Put("Filename: " & File_Name);
 
+  Text_IO.Open (File=>File, Mode=>Text_IO.In_File, Name=>File_Name);
+
+  while not Text_IO.End_Of_File (File) loop
+       while not Text_IO.End_Of_Line (File) loop
+        Text_IO.Get (File => File, Item => Char);
+        Text_IO.Put (Char);
+       end loop;
+       Text_IO.Skip_Line (File);  
+       Text_IO.New_Line;
+   end loop;
+
 end A2;
