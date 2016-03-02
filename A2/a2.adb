@@ -13,7 +13,9 @@ procedure A2 is
   Cols : constant Integer := 9;
   subtype Row_Range is Integer range 1..Rows;
   subtype Col_Range is Integer range 1..Cols;
-  type Puzzle is array (Row_Range,Col_Range) of Integer;
+  type Puzzle_Type is array (Row_Range,Col_Range) of Integer;
+
+  Puzzle := Puzzle_Type;
 
 begin
 
