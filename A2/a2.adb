@@ -1,4 +1,4 @@
-with Ada.Text_IO, Ada.Integer_IO;
+with Ada.Text_IO
 use Ada;
 
 procedure A2 is
@@ -25,8 +25,8 @@ begin
 
   while not Text_IO.End_Of_File (File) loop
        while not Text_IO.End_Of_Line (File) loop
-        Text_IO.Get (File => File, Item => Char);
-        Text_IO.Put (Char);
+        Text_IO.Get (File => File, Item => Char_Temp);
+        Text_IO.Put (Char_Temp);
        end loop;
        Text_IO.Skip_Line (File);
        Text_IO.New_Line;
