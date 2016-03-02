@@ -28,13 +28,15 @@ begin
 
   While not Text_IO.End_Of_File (File) loop
     Text_IO.Get(File=>File, Item=>Char_Temp);
-    Text_IO.Put(Char_Temp);
 
-    if Col_Counter <= 9 then
-    Puzzle(Row_Counter,Col_Counter) := Character'Pos(Char_Temp);
+    if(Character'Pos(Char_Temp)-48 > 0 ^ Character'Pos(Char_Temp)-48 < 10) then
+      if Col_Counter <= 9 then
+        Puzzle(Row_Counter,Col_Counter) := Character'Pos(Char_Temp) - 48;
+        Row_Counter := Row_Counter + 1;
+      end if;
     end if;
 
-    Row_Counter := Row_Counter + 1;
+
     if Row_Counter = 10 then
        Col_Counter := Col_Counter + 1;
        Row_Counter := 1;
