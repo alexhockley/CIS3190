@@ -24,4 +24,11 @@ begin
 
   Text_IO.Open (File=>File, Mode=>Text_IO.In_File, Name=>File_Name (1..Length));
 
+  While not Text_IO.End_Of_File (File) loop
+    Text_IO.Get(File=>File, Item=>Char_Temp);
+    Text_IO.Put(Char_Temp);
+  end loop;
+  Text_IO.New_Line;
+
+
 end A2;
