@@ -31,7 +31,7 @@ begin
     Text_IO.Get(File=>File, Item=>Char_Temp);
     Int_Temp := Character'Pos(Char_Temp)-48;
 
-    if Int_Temp > 0 and Int_Temp < 10 then
+    if Int_Temp >= 0 and Int_Temp < 10 then
       if Col_Counter <= 9 then
         Puzzle(Row_Counter,Col_Counter) := Int_Temp;
         Row_Counter := Row_Counter + 1;
@@ -51,7 +51,7 @@ begin
 
   While Row_Counter < 10 loop
     While Col_Counter < 10 loop
-      Integer_Text_IO.Put(Puzzle(Row_Counter,Col_Counter));
+      Integer_Text_IO.Put(Puzzle(Row_Counter,Col_Counter), Width=>1);
       Col_Counter := Col_Counter + 1;
     end loop;
     Text_IO.New_Line;
