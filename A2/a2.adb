@@ -3,6 +3,7 @@ use Ada;
 
 procedure A2 is
   File_Name       : String(1..100);
+  Length          : Integer;
 
   Prompt_One      : constant String := "Please enter the name of the file to read: ";
 
@@ -16,8 +17,8 @@ procedure A2 is
 begin
 
   Text_IO.Put(Prompt_One);
-  Text_IO.Get(File_Name);
+  Text_IO.Get_Line(File_Name, Length);
 
-  Text_IO.Put("Filename: " & File_Name);
+  Text_IO.Put("Filename: " & File_Name & " Length: " & Length);
 
 end A2;
