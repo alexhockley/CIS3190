@@ -19,6 +19,11 @@ procedure A2 is
   Puzzle : Puzzle_Type;
   Puzzle_Copy : Puzzle_Type;
 
+  Row_Mod_1 : Integer;
+  Row_Mod_2 : Integer;
+  Col_Mod_1 : Integer;
+  Col_Mod_2 : Integer;
+
 begin
 
   Text_IO.Put("Please enter the name of the file to read: ");
@@ -158,10 +163,35 @@ begin
     end loop;
   end if;
 
-  --now check the grid its in
-  Row_Counter := 1;
-  Col_Counter := 1;
 
+  if Cur_Row mod 3 = 1 then --top of 3x3
+    Row_Mod_1 := 1;
+    Row_Mod_2 := 2;
+  elsif Cur_Row mod 3 = 2 then --middle of 3x3
+    Row_Mod_1 := -1;
+    Row_Mod_2 := 1;
+  else --bottom of 3x3
+    Row_Mod_1 := -2;
+    Row_Mod_2 := -1;
+  end if;
 
+  if Cur_Col mod 3 = 1 then --left of 3x3
+    Col_Mod_1 := 1;
+    Col_Mod_2 := 2;
+  elsif Cur_Col mod 3 = 2 then --middle of 3x3
+    Col_Mod_1 := -1;
+    Col_Mod_2 := 1;
+  else  --right of 3x3
+    Col_Mod_1 := -2;
+    Col_Mod_2 := -1;
+  end if;
+
+  if Puzzle(Cur_Row+Row_Mod_1, Cur_Col) = Val or Puzzle(Cur_Row+Row_Mod_1, Cur_Col+Col_Mod_1) = Val or Puzzle(Cur_Row+Row_Mod_1, Cur_Col+Col_Mod_2) = Val then
+    return 0;
+  elsif Puzzle(Cur_Row, Cur_Col+Col_Mod_1) = Val or Puzzle(Cur_Row, Cur_Col+Col_Mod_2) = Val then
+    return 0;
+  elsifPuzzle(Cur_Row+Row_Mod_2, Cur_Col) = Val or Puzzle(Cur_Row+Row_Mod_2, Cur_Col+Col_Mod_1) = Val or Puzzle(Cur_Row+Row_Mod_2, Cur_Col+Col_Mod_2) = Val then
+    return 0;
+  end if;
   return 1;
 end Row_Test;
