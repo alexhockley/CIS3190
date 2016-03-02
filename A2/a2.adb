@@ -29,18 +29,29 @@ begin
   While not Text_IO.End_Of_File (File) loop
     Text_IO.Get(File=>File, Item=>Char_Temp);
     Text_IO.Put(Char_Temp);
-    
+
     if Col_Counter <= 9 then
     Puzzle(Row_Counter,Col_Counter) := Character'Pos(Char_Temp);
     end if;
-    
+
     Row_Counter := Row_Counter + 1;
     if Row_Counter = 10 then
        Col_Counter := Col_Counter + 1;
-       Row_Counter := 1;   
+       Row_Counter := 1;
     end if;
   end loop;
   Text_IO.New_Line;
 
+  Col_Counter := 1;
+  Row_Counter := 1;
 
+  While Row_Counter < 10 loop
+    While Col_Counter < 10 loop
+      Integer_Text_IO.Put(Puzzle(Row_Counter,Col_Counter));
+      Col_Counter := Col_Counter + 1;
+    end loop;
+    Text_IO.New_Line;
+    Col_Counter := 1;
+    Row_Counter := Row_Counter + 1;
+  end loop;
 end A2;
