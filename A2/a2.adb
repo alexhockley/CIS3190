@@ -109,6 +109,7 @@ begin
   end loop;
 
   --https://codemyroad.wordpress.com/2014/05/01/solving-sudoku-by-backtracking/
+  declare
   Function Solve_Sudoku(Cur_Row, Cur_Col: Integer) return Integer is
     Val : Integer := 1;
     Temp_Col : Integer;
