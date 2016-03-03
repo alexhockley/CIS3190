@@ -42,7 +42,7 @@ begin
     if Int_Temp >= 0 and Int_Temp < 10 then
       if Col_Counter <= 9 then
         Puzzle(Row_Counter,Col_Counter) := Int_Temp;
-        Puzzle_Copy(Row_Counter,Col_Counter): Int_Temp;
+        Puzzle_Copy(Row_Counter,Col_Counter) := Int_Temp;
         Row_Counter := Row_Counter + 1;
       end if;
     end if;
@@ -94,7 +94,7 @@ begin
 --          end if;
 --        end if;
 --    end if;
-  end loop;
+--  end loop;
 
   Solve_Sudoku(1,1);
   -- print final solution here
