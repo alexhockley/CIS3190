@@ -125,12 +125,13 @@ begin
         Temp_Col := Cur_Col + 1;
         if(Temp_Col = 10) then
           Temp_Row := Cur_Row + 1;
-          Temp_Col := 1
+          Temp_Col := 1;
         end if;
         if Solve_Sudoku(Temp_Row, Temp_Col) = 1 then
           return 1;
         end if;
       Val := Val + 1;
+      end if;
     end loop;
     Puzzle(Cur_Row, Cur_Col) := 0;
     return 0;
