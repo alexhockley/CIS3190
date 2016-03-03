@@ -110,13 +110,14 @@ begin
 
   --https://codemyroad.wordpress.com/2014/05/01/solving-sudoku-by-backtracking/
   Function Solve_Sudoku(Cur_Row, Cur_Col: Integer) return Integer is
-    Val : Integer := 1
+    Val : Integer := 1;
     Temp_Col : Integer;
     Temp_Row : Integer;
   begin
 
-    if Cur_Col = 10
+    if Cur_Col = 10 then
       return 1;
+    end if;
 
     While Val <= 9 loop
       Puzzle(Cur_Row, Cur_Col) := Val;
@@ -131,7 +132,7 @@ begin
         end if;
       Val := Val + 1;
     end loop;
-    Puzzle(Cur_Row, Cur_Col) = 0;
+    Puzzle(Cur_Row, Cur_Col) := 0;
     return 0;
   end Solve_Sudoku;
 
