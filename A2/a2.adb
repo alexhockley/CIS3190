@@ -24,8 +24,36 @@ procedure A2 is
   Col_Mod_1 : Integer;
   Col_Mod_2 : Integer;
 
-begin
+declare
+  Function Solve_Sudoku(Cur_Row, Cur_Col: Integer) return Integer is
+    Val : Integer := 1;
+    Temp_Col : Integer;
+    Temp_Row : Integer;
+  begin
 
+    if Cur_Col = 10 then
+      return 1;
+    end if;
+
+    While Val <= 9 loop
+      Puzzle(Cur_Row, Cur_Col) := Val;
+      if Can_Value_Go_Here(Puzzle, Val, Cur_Col, Cur_Row) = 1 then
+        Temp_Col := Cur_Col + 1;
+        if(Temp_Col = 10) then
+          Temp_Row := Cur_Row + 1;
+          Temp_Col := 1;
+        end if;
+        if Solve_Sudoku(Temp_Row, Temp_Col) = 1 then
+          return 1;
+        end if;
+      Val := Val + 1;
+      end if;
+    end loop;
+    Puzzle(Cur_Row, Cur_Col) := 0;
+    return 0;
+  end Solve_Sudoku;
+
+begin
   Text_IO.Put("Please enter the name of the file to read: ");
   Text_IO.Get_Line(Item=>File_Name, Last=>Length);
 
@@ -109,34 +137,7 @@ begin
   end loop;
 
   --https://codemyroad.wordpress.com/2014/05/01/solving-sudoku-by-backtracking/
-  declare
-  Function Solve_Sudoku(Cur_Row, Cur_Col: Integer) return Integer is
-    Val : Integer := 1;
-    Temp_Col : Integer;
-    Temp_Row : Integer;
-  begin
 
-    if Cur_Col = 10 then
-      return 1;
-    end if;
-
-    While Val <= 9 loop
-      Puzzle(Cur_Row, Cur_Col) := Val;
-      if Can_Value_Go_Here(Puzzle, Val, Cur_Col, Cur_Row) = 1 then
-        Temp_Col := Cur_Col + 1;
-        if(Temp_Col = 10) then
-          Temp_Row := Cur_Row + 1;
-          Temp_Col := 1;
-        end if;
-        if Solve_Sudoku(Temp_Row, Temp_Col) = 1 then
-          return 1;
-        end if;
-      Val := Val + 1;
-      end if;
-    end loop;
-    Puzzle(Cur_Row, Cur_Col) := 0;
-    return 0;
-  end Solve_Sudoku;
 
 end A2;
 
