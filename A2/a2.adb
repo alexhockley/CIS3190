@@ -7,9 +7,6 @@ procedure A2 is
 
   Row_Counter	  : Integer := 1;
   Col_Counter   : Integer := 1;
-  Temp_Col : Integer;
-  Temp_Row : Integer;
-  Val : Integer;
   Current_Value : Integer;
   Done_Flag     : Integer := 0;
 
@@ -99,7 +96,7 @@ begin
 --    end if;
 --  end loop;
 
-  Solve_Sudoku(1,1,1);
+  Solve_Sudoku(1,1);
   -- print final solution here
   While Row_Counter < 10 loop
     While Col_Counter < 10 loop
@@ -112,7 +109,10 @@ begin
   end loop;
 
   --https://codemyroad.wordpress.com/2014/05/01/solving-sudoku-by-backtracking/
-  Function Solve_Sudoku(Cur_Row, Cur_Col, Val: Integer) return Integer is
+  Function Solve_Sudoku(Cur_Row, Cur_Col: Integer) return Integer is
+    Val : Integer := 1;
+    Temp_Col : Integer;
+    Temp_Row : Integer;
   begin
 
     if Cur_Col = 10 then
@@ -127,7 +127,7 @@ begin
           Temp_Row := Cur_Row + 1;
           Temp_Col := 1;
         end if;
-        if Solve_Sudoku(Temp_Row, Temp_Col, Val) = 1 then
+        if Solve_Sudoku(Temp_Row, Temp_Col) = 1 then
           return 1;
         end if;
       Val := Val + 1;
