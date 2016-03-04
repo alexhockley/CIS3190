@@ -174,25 +174,7 @@ begin
     -- print final solution here
     While Row_Counter < 10 loop
       if Row_Counter mod 3 = 1 then
-        Text_IO.Put("+");
-        Text_IO.Put("-", Width=>2);
-        Text_IO.Put("-", Width=>2);
-        Text_IO.Put("-", Width=>2);
-        Text_IO.Put("-", Width=>2);
-        Text_IO.Put("-", Width=>2);
-        Text_IO.Put("+");
-        Text_IO.Put("-", Width=>2);
-        Text_IO.Put("-", Width=>2);
-        Text_IO.Put("-", Width=>2);
-        Text_IO.Put("-", Width=>2);
-        Text_IO.Put("-", Width=>2);
-        Text_IO.Put("+");
-        Text_IO.Put("-", Width=>2);
-        Text_IO.Put("-", Width=>2);
-        Text_IO.Put("-", Width=>2);
-        Text_IO.Put("-", Width=>2);
-        Text_IO.Put("-", Width=>2);
-        Text_IO.Put("+");
+        Text_IO.Put("+-----+-----+-----+");
         Text_IO.New_Line;
       end if;
       While Col_Counter < 10 loop
@@ -202,7 +184,7 @@ begin
         Integer_Text_IO.Put(Puzzle(Row_Counter,Col_Counter), Width=>2);
         Col_Counter := Col_Counter + 1;
         if Col_Counter = 10 then
-          Text_IO.Put("|", Width=>2);
+          Text_IO.Put("|");
         end if;
       end loop;
 
