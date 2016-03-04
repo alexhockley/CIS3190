@@ -56,7 +56,7 @@ declare
       end loop;
     end if;
 
-
+    -- calculate modification numbers to make sure array index stays in proper 3x3 grid
     if Cur_Row mod 3 = 1 then --top of 3x3
       Row_Mod_1 := 1;
       Row_Mod_2 := 2;
@@ -102,7 +102,6 @@ declare
     While Val <= 9 loop
       Puzzle(Cur_Row, Cur_Col) := Val;
       if Can_Value_Go_Here(Puzzle, Val, Cur_Col, Cur_Row) = 1 then
-        Text_IO.Put("Valid Position");
         Temp_Col := Cur_Col + 1;
         if Temp_Col = 10 then
           Temp_Row := Cur_Row + 1;
@@ -170,15 +169,28 @@ begin
   Current_Value := 1;
 
   Result := Solve_Sudoku(1,1);
-  -- print final solution here
-  While Row_Counter < 10 loop
-    While Col_Counter < 10 loop
-      Integer_Text_IO.Put(Puzzle(Row_Counter,Col_Counter), Width=>1);
-      Col_Counter := Col_Counter + 1;
+
+  if Result = 1 then
+    -- print final solution here
+    While Row_Counter < 10 loop
+      While Col_Counter < 10 loop
+        if Row_Counter mod 3 = 1 then
+          if Col_Counter mod 3 = 1 then
+            Text_IO.Put("+");
+          else
+            Text_IO.Put("-");
+          end if;
+        end if;
+        Integer_Text_IO.Put(Puzzle(Row_Counter,Col_Counter), Width=>1);
+        Col_Counter := Col_Counter + 1;
+      end loop;
+      Text_IO.New_Line;
+      Col_Counter := 1;
+      Row_Counter := Row_Counter + 1;
     end loop;
+  else
+    Text_IO.Put("No solution found");
     Text_IO.New_Line;
-    Col_Counter := 1;
-    Row_Counter := Row_Counter + 1;
-  end loop;
+  end if;
 end;
 end A2;
