@@ -7,6 +7,7 @@ declare
 
 
   File_Name       : String(1..100);
+  Out_Name        : String(1..100);
   Length          : Integer range 0..100;
 
   Row_Counter	  : Integer := 1;
@@ -15,6 +16,7 @@ declare
   Temp_Counter  : Integer;
 
   File            : Text_IO.File_Type;
+  Output_File     : Text_IO.File_Type;
   Char_Temp       : Character;
   Int_Temp        : Integer;
 
@@ -129,6 +131,11 @@ begin
 
   Text_IO.Open (File=>File, Mode=>Text_IO.In_File, Name=>File_Name (1..Length));
 
+  Text_IO.Put("Filename: " & File_Name(1..Length));
+  Integer_Text_IO.Put(Length);
+
+  Text_IO.Open (File=>Output_File, Mode=>Text_IO.Out_File, Name=>Out_Name (1..Length));
+
   While not Text_IO.End_Of_File (File) loop
     Text_IO.Get(File=>File, Item=>Char_Temp);
     Int_Temp := Character'Pos(Char_Temp)-48;
@@ -175,6 +182,7 @@ begin
     While Row_Counter < 10 loop
       if Row_Counter mod 3 = 1 then
         Text_IO.Put("+-----+-----+-----+");
+        Text_IO.Put(File=>Output_File, Item=>"+-----+-----+-----+");
         Text_IO.New_Line;
       end if;
       While Col_Counter < 10 loop
@@ -182,9 +190,11 @@ begin
           Text_IO.Put("|");
         end if;
         Integer_Text_IO.Put(Puzzle(Row_Counter,Col_Counter), Width=>2);
+        Integer_Text_IO.Put(File=>Output_File, Item=>Puzzle(Row_Counter,Col_Counter), Width=>2);
         Col_Counter := Col_Counter + 1;
         if Col_Counter = 10 then
           Text_IO.Put("|");
+          Text_IO.Put(File=>Output_File, Item=>"|");
         end if;
       end loop;
 
@@ -193,6 +203,7 @@ begin
       Row_Counter := Row_Counter + 1;
     end loop;
     Text_IO.Put("+-----+-----+-----+");
+    Text_IO.Put(File=>Output_File, Item=>"+-----+-----+-----+");
     Text_IO.New_Line;
   else
     Text_IO.Put("No solution found");
