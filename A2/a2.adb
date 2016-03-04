@@ -189,10 +189,12 @@ begin
         Text_IO.Put("+-----+-----+-----+");
         Text_IO.Put(File=>Output_File, Item=>"+-----+-----+-----+");
         Text_IO.New_Line;
+        Text_IO.New_Line(Output_File);
       end if;
       While Col_Counter < 10 loop
         if Col_Counter mod 3 = 1 then
           Text_IO.Put("|");
+          Text_IO.Put(File=>Output_File, Item=>"|");
         end if;
         Integer_Text_IO.Put(Puzzle(Row_Counter,Col_Counter), Width=>2);
         Integer_Text_IO.Put(File=>Output_File, Item=>Puzzle(Row_Counter,Col_Counter), Width=>2);
@@ -204,11 +206,13 @@ begin
       end loop;
 
       Text_IO.New_Line;
+      Text_IO.New_Line(Output_File);
       Col_Counter := 1;
       Row_Counter := Row_Counter + 1;
     end loop;
     Text_IO.Put("+-----+-----+-----+");
     Text_IO.Put(File=>Output_File, Item=>"+-----+-----+-----+");
+    Text_IO.New_Line(Output_File);
     Text_IO.New_Line;
   else
     Text_IO.Put("No solution found");
