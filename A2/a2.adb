@@ -6,34 +6,46 @@ use Ada;
 -- Ada sudoku solver
 -- March 4 2016
 
+--create procedure for assignment
 procedure A2 is
 begin
 declare
 
+  --variable and function declaration block
 
+  --file name reading variables
   File_Name       : String(1..100);
   Out_Name        : String(1..100);
   Length          : Integer range 0..100;
 
+  --index counters
   Row_Counter	  : Integer := 1;
   Col_Counter   : Integer := 1;
 
+  -- file type variables
   File            : Text_IO.File_Type;
   Output_File     : Text_IO.File_Type;
+
+  --temporary variables for file reading
   Char_Temp       : Character;
   Int_Temp        : Integer;
 
+  -- final result flag
   Result : Integer;
 
+  --puzzle array type
   type Puzzle_Type is array (1..9,1..9) of Integer;
 
+  --puzzle variable
   Puzzle : Puzzle_Type;
 
+  --modification values for checking the grid
   Row_Mod_1 : Integer;
   Row_Mod_2 : Integer;
   Col_Mod_1 : Integer;
   Col_Mod_2 : Integer;
 
+  --checks if a value can go in the given cell for the puzzle
   Function Can_Value_Go_Here(Puzzle: Puzzle_Type; Value, Cur_Col, Cur_Row: Integer) return Integer is
     Row_Counter : Integer := 1;
     Col_Counter : Integer := 1;
@@ -95,35 +107,37 @@ declare
 
 
   --https://codemyroad.wordpress.com/2014/05/01/solving-sudoku-by-backtracking/
+  --solves the sudoku puzzle recursively using backtracking
   Function Solve_Sudoku(Cur_Row, Cur_Col: Integer) return Integer is
     Val : Integer := 1;
     Temp_Col : Integer := Cur_Col;
     Temp_Row : Integer := Cur_Row;
   begin
-    if Cur_Row = 10 then
+    if Cur_Row = 10 then --outside of bounds of puzzle, so we're done every cell
       return 1;
     end if;
-    While Val <= 9 loop
+    While Val <= 9 loop --go for each number
       Puzzle(Cur_Row, Cur_Col) := Val;
-      if Can_Value_Go_Here(Puzzle, Val, Cur_Col, Cur_Row) = 1 then
+      if Can_Value_Go_Here(Puzzle, Val, Cur_Col, Cur_Row) = 1 then --check if value can go here
         Temp_Col := Cur_Col + 1;
         if Temp_Col = 10 then
           Temp_Row := Cur_Row + 1;
           Temp_Col := 1;
         end if;
-        if Solve_Sudoku(Temp_Row, Temp_Col) = 1 then
+        if Solve_Sudoku(Temp_Row, Temp_Col) = 1 then --next cell
           return 1;
         end if;
       end if;
       Val := Val + 1;
     end loop;
     Puzzle(Cur_Row, Cur_Col) := 0;
-    return 0;
+    return 0; --cannot place any numbers, so we're done
   end Solve_Sudoku;
 
 
 begin
 
+  --prompt for input
   Text_IO.Put("Please enter the name of the file to read: ");
   Text_IO.Get_Line(Item=>File_Name, Last=>Length);
   Text_IO.New_Line;
@@ -136,6 +150,7 @@ begin
 
   Text_IO.Create (File=>Output_File, Mode=>Text_IO.Out_File, Name=>Out_Name (1..Length));
 
+  --read the file character by character
   While not Text_IO.End_Of_File (File) loop
     Text_IO.Get(File=>File, Item=>Char_Temp);
     Int_Temp := Character'Pos(Char_Temp)-48;
