@@ -1,6 +1,11 @@
 with Ada.Text_IO, Ada.Integer_Text_IO;
 use Ada;
 
+-- Alex Hockley
+-- CIS3190 Assignment 2
+-- Ada sudoku solver
+-- March 4 2016
+
 procedure A2 is
 begin
 declare
@@ -134,9 +139,6 @@ begin
 
   Text_IO.Create (File=>Output_File, Mode=>Text_IO.Out_File, Name=>Out_Name (1..Length));
 
-
-
-
   While not Text_IO.End_Of_File (File) loop
     Text_IO.Get(File=>File, Item=>Char_Temp);
     Int_Temp := Character'Pos(Char_Temp)-48;
@@ -156,20 +158,6 @@ begin
     end if;
   end loop;
   Text_IO.New_Line;
-
-  -- reset counters for puzzle index
-  Col_Counter := 1;
-  Row_Counter := 1;
-
-  While Row_Counter < 10 loop
-    While Col_Counter < 10 loop
-      Integer_Text_IO.Put(Puzzle(Row_Counter,Col_Counter), Width=>1);
-      Col_Counter := Col_Counter + 1;
-    end loop;
-    Text_IO.New_Line;
-    Col_Counter := 1;
-    Row_Counter := Row_Counter + 1;
-  end loop;
 
   -- reset counters for puzzle index
   Row_Counter := 1;
