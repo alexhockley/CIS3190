@@ -96,10 +96,9 @@ declare
     Temp_Col : Integer;
     Temp_Row : Integer;
   begin
-    if Cur_Col = 10 then
+    if Cur_Row = 10 then
       return 1;
     end if;
-
     While Val <= 9 loop
       Puzzle(Cur_Row, Cur_Col) := Val;
       if Can_Value_Go_Here(Puzzle, Val, Cur_Col, Cur_Row) = 1 then
