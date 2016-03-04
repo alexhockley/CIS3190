@@ -9,6 +9,9 @@ procedure A2 is
   Col_Counter   : Integer := 1;
   Current_Value : Integer;
   Done_Flag     : Integer := 0;
+  Temp_Col : Integer;
+  Temp_Row : Integer;
+  Solve_Val : Integer;
 
   File            : Text_IO.File_Type;
   Char_Temp       : Character;
@@ -110,18 +113,15 @@ begin
 
   --https://codemyroad.wordpress.com/2014/05/01/solving-sudoku-by-backtracking/
   Function Solve_Sudoku(Cur_Row, Cur_Col: Integer) return Integer is
-    Val : Integer := 1;
-    Temp_Col : Integer;
-    Temp_Row : Integer;
   begin
-
+    Solve_Val := 1;
     if Cur_Col = 10 then
       return 1;
     end if;
 
-    While Val <= 9 loop
+    While Solve_Val <= 9 loop
       Puzzle(Cur_Row, Cur_Col) := Val;
-      if Can_Value_Go_Here(Puzzle, Val, Cur_Col, Cur_Row) = 1 then
+      if Can_Value_Go_Here(Puzzle, Solve_Val, Cur_Col, Cur_Row) = 1 then
         Temp_Col := Cur_Col + 1;
         if(Temp_Col = 10) then
           Temp_Row := Cur_Row + 1;
@@ -130,7 +130,7 @@ begin
         if Solve_Sudoku(Temp_Row, Temp_Col) = 1 then
           return 1;
         end if;
-      Val := Val + 1;
+      Solve_Val := Solve_Val + 1;
       end if;
     end loop;
     Puzzle(Cur_Row, Cur_Col) := 0;
