@@ -79,11 +79,11 @@ declare
       Col_Mod_2 := -1;
     end if;
 
-    if Puzzle(Cur_Row+Row_Mod_1, Cur_Col) = Val or Puzzle(Cur_Row+Row_Mod_1, Cur_Col+Col_Mod_1) = Val or Puzzle(Cur_Row+Row_Mod_1, Cur_Col+Col_Mod_2) = Val then
+    if Puzzle(Cur_Row+Row_Mod_1, Cur_Col) = Val or Puzzle(Cur_Row+Row_Mod_1, Cur_Col+Col_Mod_1) = Value or Puzzle(Cur_Row+Row_Mod_1, Cur_Col+Col_Mod_2) = Value then
       return 0;
     elsif Puzzle(Cur_Row, Cur_Col+Col_Mod_1) = Val or Puzzle(Cur_Row, Cur_Col+Col_Mod_2) = Val then
       return 0;
-    elsif Puzzle(Cur_Row+Row_Mod_2, Cur_Col) = Val or Puzzle(Cur_Row+Row_Mod_2, Cur_Col+Col_Mod_1) = Val or Puzzle(Cur_Row+Row_Mod_2, Cur_Col+Col_Mod_2) = Val then
+    elsif Puzzle(Cur_Row+Row_Mod_2, Cur_Col) = Val or Puzzle(Cur_Row+Row_Mod_2, Cur_Col+Col_Mod_1) = Value or Puzzle(Cur_Row+Row_Mod_2, Cur_Col+Col_Mod_2) = Value then
       return 0;
     end if;
     return 1;
@@ -92,11 +92,10 @@ declare
 
   --https://codemyroad.wordpress.com/2014/05/01/solving-sudoku-by-backtracking/
   Function Solve_Sudoku(Cur_Row, Cur_Col: Integer) return Integer is
-    Val : Integer;
+    Val : Integer := 1;
     Temp_Col : Integer;
     Temp_Row : Integer;
   begin
-    Val := 1;
     if Cur_Col = 10 then
       return 1;
     end if;
