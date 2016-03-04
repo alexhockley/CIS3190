@@ -158,7 +158,6 @@ begin
   -- reset counters for puzzle index
   Row_Counter := 1;
   Col_Counter := 1;
-  Current_Value := 1;
 
   Result := Solve_Sudoku(1,1);
 
