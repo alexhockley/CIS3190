@@ -9,9 +9,6 @@ procedure A2 is
   Col_Counter   : Integer := 1;
   Current_Value : Integer;
   Done_Flag     : Integer := 0;
-  Temp_Col : Integer;
-  Temp_Row : Integer;
-  Solve_Val : Integer;
 
   File            : Text_IO.File_Type;
   Char_Temp       : Character;
@@ -26,6 +23,37 @@ procedure A2 is
   Row_Mod_2 : Integer;
   Col_Mod_1 : Integer;
   Col_Mod_2 : Integer;
+
+  --https://codemyroad.wordpress.com/2014/05/01/solving-sudoku-by-backtracking/
+  declare
+  Function Solve_Sudoku(Cur_Row, Cur_Col: Integer) return Integer is
+    Val : Integer;
+    Temp_Col : Integer;
+    Temp_Row : Integer;
+  begin
+    Val := 1;
+    if Cur_Col = 10 then
+      return 1;
+    end if;
+
+    While Val <= 9 loop
+      Puzzle(Cur_Row, Cur_Col) := Val;
+      if Can_Value_Go_Here(Puzzle, Val, Cur_Col, Cur_Row) = 1 then
+        Temp_Col := Cur_Col + 1;
+        if(Temp_Col = 10) then
+          Temp_Row := Cur_Row + 1;
+          Temp_Col := 1;
+        end if;
+        if Solve_Sudoku(Temp_Row, Temp_Col) = 1 then
+          return 1;
+        end if;
+      Val := Val + 1;
+      end if;
+    end loop;
+    Puzzle(Cur_Row, Cur_Col) := 0;
+    return 0;
+  end Solve_Sudoku;
+
 
 begin
 
@@ -111,31 +139,7 @@ begin
     Row_Counter := Row_Counter + 1;
   end loop;
 
-  --https://codemyroad.wordpress.com/2014/05/01/solving-sudoku-by-backtracking/
-  Function Solve_Sudoku(Cur_Row, Cur_Col: Integer) return Integer is
-  begin
-    Solve_Val := 1;
-    if Cur_Col = 10 then
-      return 1;
-    end if;
-
-    While Solve_Val <= 9 loop
-      Puzzle(Cur_Row, Cur_Col) := Val;
-      if Can_Value_Go_Here(Puzzle, Solve_Val, Cur_Col, Cur_Row) = 1 then
-        Temp_Col := Cur_Col + 1;
-        if(Temp_Col = 10) then
-          Temp_Row := Cur_Row + 1;
-          Temp_Col := 1;
-        end if;
-        if Solve_Sudoku(Temp_Row, Temp_Col) = 1 then
-          return 1;
-        end if;
-      Solve_Val := Solve_Val + 1;
-      end if;
-    end loop;
-    Puzzle(Cur_Row, Cur_Col) := 0;
-    return 0;
-  end Solve_Sudoku;
+end;
 
 end A2;
 
