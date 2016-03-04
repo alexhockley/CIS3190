@@ -3,6 +3,10 @@ use Ada;
 
 procedure A2 is
 declare
+
+  Function Solve_Sudoku(Cur_Row, Cur_Col: Integer) return Integer;
+  Function Can_Value_Go_Here(Puzzle: Puzzle_Type; Value, Cur_Col, Cur_Row: Integer) return Integer;
+
   File_Name       : String(1..100);
   Length          : Integer range 0..100;
 
@@ -14,6 +18,8 @@ declare
   File            : Text_IO.File_Type;
   Char_Temp       : Character;
   Int_Temp        : Integer;
+
+  Result : Integer;
 
   type Puzzle_Type is array (1..9,1..9) of Integer;
 
@@ -53,7 +59,6 @@ declare
     end loop;
     Puzzle(Cur_Row, Cur_Col) := 0;
     return 0;
-    end;
   end Solve_Sudoku;
 
   Function Can_Value_Go_Here(Puzzle: Puzzle_Type; Value, Cur_Col, Cur_Row: Integer) return Integer is
@@ -113,7 +118,6 @@ declare
       return 0;
     end if;
     return 1;
-    end;
   end Can_Value_Go_Here;
 
 begin
@@ -166,7 +170,7 @@ begin
   Col_Counter := 1;
   Current_Value := 1;
 
-  Solve_Sudoku(1,1);
+  Result := Solve_Sudoku(1,1);
   -- print final solution here
   While Row_Counter < 10 loop
     While Col_Counter < 10 loop
@@ -177,5 +181,5 @@ begin
     Col_Counter := 1;
     Row_Counter := Row_Counter + 1;
   end loop;
-
+end;
 end A2;
