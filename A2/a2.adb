@@ -2,6 +2,7 @@ with Ada.Text_IO, Ada.Integer_Text_IO;
 use Ada;
 
 procedure A2 is
+begin
 declare
 
   Function Solve_Sudoku(Cur_Row, Cur_Col: Integer) return Integer;
