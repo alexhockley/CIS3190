@@ -93,8 +93,8 @@ declare
   --https://codemyroad.wordpress.com/2014/05/01/solving-sudoku-by-backtracking/
   Function Solve_Sudoku(Cur_Row, Cur_Col: Integer) return Integer is
     Val : Integer := 1;
-    Temp_Col : Integer;
-    Temp_Row : Integer;
+    Temp_Col : Integer := 1;
+    Temp_Row : Integer := 1;
   begin
     if Cur_Row = 10 then
       return 1;
@@ -102,11 +102,12 @@ declare
     Integer_Text_IO.Put(Cur_Row);
     Text_IO.New_Line;
     Integer_Text_IO.Put(Cur_Col);
+    Text_IO.New_Line;
     While Val <= 9 loop
       Puzzle(Cur_Row, Cur_Col) := Val;
       if Can_Value_Go_Here(Puzzle, Val, Cur_Col, Cur_Row) = 1 then
         Temp_Col := Cur_Col + 1;
-        if(Temp_Col = 10) then
+        if Temp_Col = 10 then
           Temp_Row := Cur_Row + 1;
           Temp_Col := 1;
         end if;
