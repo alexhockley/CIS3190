@@ -5,8 +5,6 @@ procedure A2 is
 begin
 declare
 
-  Function Solve_Sudoku(Cur_Row, Cur_Col: Integer) return Integer;
-  Function Can_Value_Go_Here(Puzzle: Puzzle_Type; Value, Cur_Col, Cur_Row: Integer) return Integer;
 
   File_Name       : String(1..100);
   Length          : Integer range 0..100;
@@ -31,36 +29,6 @@ declare
   Row_Mod_2 : Integer;
   Col_Mod_1 : Integer;
   Col_Mod_2 : Integer;
-
-  --https://codemyroad.wordpress.com/2014/05/01/solving-sudoku-by-backtracking/
-
-  Function Solve_Sudoku(Cur_Row, Cur_Col: Integer) return Integer is
-    Val : Integer;
-    Temp_Col : Integer;
-    Temp_Row : Integer;
-  begin
-    Val := 1;
-    if Cur_Col = 10 then
-      return 1;
-    end if;
-
-    While Val <= 9 loop
-      Puzzle(Cur_Row, Cur_Col) := Val;
-      if Can_Value_Go_Here(Puzzle, Val, Cur_Col, Cur_Row) = 1 then
-        Temp_Col := Cur_Col + 1;
-        if(Temp_Col = 10) then
-          Temp_Row := Cur_Row + 1;
-          Temp_Col := 1;
-        end if;
-        if Solve_Sudoku(Temp_Row, Temp_Col) = 1 then
-          return 1;
-        end if;
-      Val := Val + 1;
-      end if;
-    end loop;
-    Puzzle(Cur_Row, Cur_Col) := 0;
-    return 0;
-  end Solve_Sudoku;
 
   Function Can_Value_Go_Here(Puzzle: Puzzle_Type; Value, Cur_Col, Cur_Row: Integer) return Integer is
     Row_Counter : Integer := 1;
@@ -120,6 +88,37 @@ declare
     end if;
     return 1;
   end Can_Value_Go_Here;
+
+
+  --https://codemyroad.wordpress.com/2014/05/01/solving-sudoku-by-backtracking/
+  Function Solve_Sudoku(Cur_Row, Cur_Col: Integer) return Integer is
+    Val : Integer;
+    Temp_Col : Integer;
+    Temp_Row : Integer;
+  begin
+    Val := 1;
+    if Cur_Col = 10 then
+      return 1;
+    end if;
+
+    While Val <= 9 loop
+      Puzzle(Cur_Row, Cur_Col) := Val;
+      if Can_Value_Go_Here(Puzzle, Val, Cur_Col, Cur_Row) = 1 then
+        Temp_Col := Cur_Col + 1;
+        if(Temp_Col = 10) then
+          Temp_Row := Cur_Row + 1;
+          Temp_Col := 1;
+        end if;
+        if Solve_Sudoku(Temp_Row, Temp_Col) = 1 then
+          return 1;
+        end if;
+      Val := Val + 1;
+      end if;
+    end loop;
+    Puzzle(Cur_Row, Cur_Col) := 0;
+    return 0;
+  end Solve_Sudoku;
+
 
 begin
 
