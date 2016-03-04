@@ -124,19 +124,15 @@ begin
 
   Text_IO.Put("Please enter the name of the file to read: ");
   Text_IO.Get_Line(Item=>File_Name, Last=>Length);
-
-
-  Text_IO.Put("Filename: " & File_Name(1..Length));
-  Integer_Text_IO.Put(Length);
+  Text_IO.New_Line;
 
   Text_IO.Open (File=>File, Mode=>Text_IO.In_File, Name=>File_Name (1..Length));
 
   Text_IO.Put("Please enter the name of the file to output to: ");
   Text_IO.Get_Line(Item=>Out_Name, Last=>Length);
+  Text_IO.New_Line;
 
-  Text_IO.Put("Output File: " & Out_Name(1..Length));
-  Integer_Text_IO.Put(Length);
-    Text_IO.Create (File=>Output_File, Mode=>Text_IO.Out_File, Name=>Out_Name (1..Length));
+  Text_IO.Create (File=>Output_File, Mode=>Text_IO.Out_File, Name=>Out_Name (1..Length));
 
 
 
@@ -204,7 +200,6 @@ begin
           Text_IO.Put(File=>Output_File, Item=>"|");
         end if;
       end loop;
-
       Text_IO.New_Line;
       Text_IO.New_Line(Output_File);
       Col_Counter := 1;
