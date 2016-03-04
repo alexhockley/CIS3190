@@ -54,6 +54,64 @@ procedure A2 is
     return 0;
   end Solve_Sudoku;
 
+  Function Can_Value_Go_Here(Puzzle: Puzzle_Type; Value, Cur_Col, Cur_Row: Integer) return Integer is
+    Row_Counter : Integer := 1;
+    Col_Counter : Integer := 1;
+  begin
+    --first check the row
+    While Col_Counter < 10 loop
+      if Col_Counter /= Cur_Col then
+        if Puzzle(Cur_Row,Col_Counter) = Value then
+          return 0;
+        end if;
+      end if;
+      Col_Counter := Col_Counter + 1;
+    end loop;
+
+    --now check the column
+    if Result /= 1
+      While Row_Counter < 10 loop
+        if Row_Counter /= Cur_Row then
+          if Puzzle(Row_Counter, Cur_Col) = Value then
+            return 0;
+          end if;
+        end if;
+        Row_Counter := Row_Counter + 1;
+      end loop;
+    end if;
+
+
+    if Cur_Row mod 3 = 1 then --top of 3x3
+      Row_Mod_1 := 1;
+      Row_Mod_2 := 2;
+    elsif Cur_Row mod 3 = 2 then --middle of 3x3
+      Row_Mod_1 := -1;
+      Row_Mod_2 := 1;
+    else --bottom of 3x3
+      Row_Mod_1 := -2;
+      Row_Mod_2 := -1;
+    end if;
+
+    if Cur_Col mod 3 = 1 then --left of 3x3
+      Col_Mod_1 := 1;
+      Col_Mod_2 := 2;
+    elsif Cur_Col mod 3 = 2 then --middle of 3x3
+      Col_Mod_1 := -1;
+      Col_Mod_2 := 1;
+    else  --right of 3x3
+      Col_Mod_1 := -2;
+      Col_Mod_2 := -1;
+    end if;
+
+    if Puzzle(Cur_Row+Row_Mod_1, Cur_Col) = Val or Puzzle(Cur_Row+Row_Mod_1, Cur_Col+Col_Mod_1) = Val or Puzzle(Cur_Row+Row_Mod_1, Cur_Col+Col_Mod_2) = Val then
+      return 0;
+    elsif Puzzle(Cur_Row, Cur_Col+Col_Mod_1) = Val or Puzzle(Cur_Row, Cur_Col+Col_Mod_2) = Val then
+      return 0;
+    elsifPuzzle(Cur_Row+Row_Mod_2, Cur_Col) = Val or Puzzle(Cur_Row+Row_Mod_2, Cur_Col+Col_Mod_1) = Val or Puzzle(Cur_Row+Row_Mod_2, Cur_Col+Col_Mod_2) = Val then
+      return 0;
+    end if;
+    return 1;
+  end Row_Test;
 
 begin
 
@@ -139,65 +197,4 @@ begin
     Row_Counter := Row_Counter + 1;
   end loop;
 
-end;
-
 end A2;
-
-Function Can_Value_Go_Here(Puzzle: Puzzle_Type; Value, Cur_Col, Cur_Row: Integer) return Integer is
-  Row_Counter : Integer := 1;
-  Col_Counter : Integer := 1;
-begin
-  --first check the row
-  While Col_Counter < 10 loop
-    if Col_Counter /= Cur_Col then
-      if Puzzle(Cur_Row,Col_Counter) = Value then
-        return 0;
-      end if;
-    end if;
-    Col_Counter := Col_Counter + 1;
-  end loop;
-
-  --now check the column
-  if Result /= 1
-    While Row_Counter < 10 loop
-      if Row_Counter /= Cur_Row then
-        if Puzzle(Row_Counter, Cur_Col) = Value then
-          return 0;
-        end if;
-      end if;
-      Row_Counter := Row_Counter + 1;
-    end loop;
-  end if;
-
-
-  if Cur_Row mod 3 = 1 then --top of 3x3
-    Row_Mod_1 := 1;
-    Row_Mod_2 := 2;
-  elsif Cur_Row mod 3 = 2 then --middle of 3x3
-    Row_Mod_1 := -1;
-    Row_Mod_2 := 1;
-  else --bottom of 3x3
-    Row_Mod_1 := -2;
-    Row_Mod_2 := -1;
-  end if;
-
-  if Cur_Col mod 3 = 1 then --left of 3x3
-    Col_Mod_1 := 1;
-    Col_Mod_2 := 2;
-  elsif Cur_Col mod 3 = 2 then --middle of 3x3
-    Col_Mod_1 := -1;
-    Col_Mod_2 := 1;
-  else  --right of 3x3
-    Col_Mod_1 := -2;
-    Col_Mod_2 := -1;
-  end if;
-
-  if Puzzle(Cur_Row+Row_Mod_1, Cur_Col) = Val or Puzzle(Cur_Row+Row_Mod_1, Cur_Col+Col_Mod_1) = Val or Puzzle(Cur_Row+Row_Mod_1, Cur_Col+Col_Mod_2) = Val then
-    return 0;
-  elsif Puzzle(Cur_Row, Cur_Col+Col_Mod_1) = Val or Puzzle(Cur_Row, Cur_Col+Col_Mod_2) = Val then
-    return 0;
-  elsifPuzzle(Cur_Row+Row_Mod_2, Cur_Col) = Val or Puzzle(Cur_Row+Row_Mod_2, Cur_Col+Col_Mod_1) = Val or Puzzle(Cur_Row+Row_Mod_2, Cur_Col+Col_Mod_2) = Val then
-    return 0;
-  end if;
-  return 1;
-end Row_Test;
