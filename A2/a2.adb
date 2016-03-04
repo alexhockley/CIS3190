@@ -99,6 +99,9 @@ declare
     if Cur_Row = 10 then
       return 1;
     end if;
+    Integer_Text_IO.Put(Cur_Row);
+    Text_IO.New_Line;
+    Integer_Text_IO.Put(Cur_Col);
     While Val <= 9 loop
       Puzzle(Cur_Row, Cur_Col) := Val;
       if Can_Value_Go_Here(Puzzle, Val, Cur_Col, Cur_Row) = 1 then
