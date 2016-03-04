@@ -2,6 +2,7 @@ with Ada.Text_IO, Ada.Integer_Text_IO;
 use Ada;
 
 procedure A2 is
+declare
   File_Name       : String(1..100);
   Length          : Integer range 0..100;
 
@@ -25,7 +26,7 @@ procedure A2 is
   Col_Mod_2 : Integer;
 
   --https://codemyroad.wordpress.com/2014/05/01/solving-sudoku-by-backtracking/
-  declare
+
   Function Solve_Sudoku(Cur_Row, Cur_Col: Integer) return Integer is
     Val : Integer;
     Temp_Col : Integer;
@@ -69,7 +70,7 @@ procedure A2 is
     end loop;
 
     --now check the column
-    if Result /= 1
+    if Result /= 1 then
       While Row_Counter < 10 loop
         if Row_Counter /= Cur_Row then
           if Puzzle(Row_Counter, Cur_Col) = Value then
@@ -111,7 +112,7 @@ procedure A2 is
       return 0;
     end if;
     return 1;
-  end Row_Test;
+  end Can_Value_Go_Here;
 
 begin
 
@@ -196,5 +197,7 @@ begin
     Col_Counter := 1;
     Row_Counter := Row_Counter + 1;
   end loop;
+
+end;
 
 end A2;
