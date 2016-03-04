@@ -53,6 +53,7 @@ declare
     end loop;
     Puzzle(Cur_Row, Cur_Col) := 0;
     return 0;
+    end;
   end Solve_Sudoku;
 
   Function Can_Value_Go_Here(Puzzle: Puzzle_Type; Value, Cur_Col, Cur_Row: Integer) return Integer is
@@ -108,10 +109,11 @@ declare
       return 0;
     elsif Puzzle(Cur_Row, Cur_Col+Col_Mod_1) = Val or Puzzle(Cur_Row, Cur_Col+Col_Mod_2) = Val then
       return 0;
-    elsifPuzzle(Cur_Row+Row_Mod_2, Cur_Col) = Val or Puzzle(Cur_Row+Row_Mod_2, Cur_Col+Col_Mod_1) = Val or Puzzle(Cur_Row+Row_Mod_2, Cur_Col+Col_Mod_2) = Val then
+    elsif Puzzle(Cur_Row+Row_Mod_2, Cur_Col) = Val or Puzzle(Cur_Row+Row_Mod_2, Cur_Col+Col_Mod_1) = Val or Puzzle(Cur_Row+Row_Mod_2, Cur_Col+Col_Mod_2) = Val then
       return 0;
     end if;
     return 1;
+    end;
   end Can_Value_Go_Here;
 
 begin
@@ -164,28 +166,6 @@ begin
   Col_Counter := 1;
   Current_Value := 1;
 
-
--- solution from wikipedia, i think its wrong
---  While Done_Flag = 0 loop
---    if Puzzle(Row_Counter,Col_Counter) = 0 then
---      Puzzle(Row_Counter,Col_Counter) := Current_Value;
---      if Can_Value_Go_Here(Puzzle, Current_Value, Col_Counter, Row_Counter) = 0
---        Puzzle(Row_Counter,Col_Counter) := 0;
---        Current_Value := Current_Value + 1;
---      end if;
---    else
---      While Row_Counter < 10 loop
---        Row_Counter := Row_Counter + 1;
---        if Row_Counter = 10 then
---          Row_Counter := 1;
---          Col_Counter := Col_Counter + 1;
---          if Col_Counter = 10 then
---            Done_Flag := 1;
---          end if;
---        end if;
---    end if;
---  end loop;
-
   Solve_Sudoku(1,1);
   -- print final solution here
   While Row_Counter < 10 loop
@@ -197,7 +177,5 @@ begin
     Col_Counter := 1;
     Row_Counter := Row_Counter + 1;
   end loop;
-
-end;
 
 end A2;
