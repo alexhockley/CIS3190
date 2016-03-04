@@ -173,6 +173,10 @@ begin
   if Result = 1 then
     -- print final solution here
     While Row_Counter < 10 loop
+      if Row_Counter mod 3 = 1 then
+        Text_IO.Put("+-----+-----+-----+");
+        Text_IO.New_Line;
+      end if;
       While Col_Counter < 10 loop
         if Col_Counter mod 3 = 1 then
           Text_IO.Put("|");
@@ -180,13 +184,13 @@ begin
         Integer_Text_IO.Put(Puzzle(Row_Counter,Col_Counter), Width=>1);
         Col_Counter := Col_Counter + 1;
       end loop;
-      if Row_Counter mod 3 = 1 then
-        Text_IO.Put("+-----+-----+-----+");
-      end if;
+
       Text_IO.New_Line;
       Col_Counter := 1;
       Row_Counter := Row_Counter + 1;
     end loop;
+    Text_IO.Put("+-----+-----+-----+");
+    Text_IO.New_Line;
   else
     Text_IO.Put("No solution found");
     Text_IO.New_Line;
