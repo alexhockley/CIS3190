@@ -136,8 +136,10 @@ begin
 
   Text_IO.Put("Output File: " & Out_Name(1..Length));
   Integer_Text_IO.Put(Length);
+    Text_IO.Create (File=>Output_File, Mode=>Text_IO.Out_File, Name=>Out_Name (1..Length));
 
-  Text_IO.Open (File=>Output_File, Mode=>Text_IO.Out_File, Name=>Out_Name (1..Length));
+
+
 
   While not Text_IO.End_Of_File (File) loop
     Text_IO.Get(File=>File, Item=>Char_Temp);
