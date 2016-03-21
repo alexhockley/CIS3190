@@ -3,17 +3,18 @@ PROGRAM-ID. A3.
 ENVIRONMENT DIVISION.
 CONFIGURATION SECTION.
 REPOSITORY.
-  FUNCTION encrypt
-  FUNCTION decrypt
-  .
+    FUNCTION encrypt
+    FUNCTION decrypt
+    .
+
 DATA DIVISION.
 WORKING-STORAGE SECTION.
-01 txt           PIC X(50).
-01 encrypted-str  PIC X(50).
+01 txt              PIC X(50).
+01 encrypted-str    PIC X(50).
 
 PROCEDURE DIVISION.
   DISPLAY "Message to encrypt: " NO ADVANCING
-  ACCEPT text
+  ACCEPT txt
 
   MOVE FUNCTION encrypt(txt) TO encrypted-str
   DISPLAY "Encrypted: " encrypted-str
@@ -45,19 +46,13 @@ PROCEDURE DIVISION USING str RETURNING encrypted-str.
     END-IF
 
     MOVE FUNCTION CHAR(FUNCTION MOD(FUNCTION ORD(encrypted-str (i:1))
-      -a + (i-1), 26) + a)
-      TO encrypted-str(i:1)
+      -a + (i-1), 26) + a) TO encrypted-str(i:1)
   END-PERFORM
   .
 END FUNCTION encrypt.
 
 FUNCTION-ID. decrypt.
 
-ENVIRONMENT DIVISION.
-CONFIGURATION SECTION.
-REPOSITORY.
-  FUNCTION encrypt
-  .
 DATA DIVISION.
 LINKAGE SECTION.
 01 str              PIC X(50).
