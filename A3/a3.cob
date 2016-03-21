@@ -1,23 +1,21 @@
-IDENTIFICATION DIVISION.
 PROGRAM-ID. A3.
 
 ENVIRONMENT DIVISION.
-CONFIGURATION DIVISION.
+CONFIGURATION SECTION.
 REPOSITORY.
   FUNCTION encrypt
   FUNCTION decrypt
   .
 DATA DIVISION.
 WORKING-STORAGE SECTION.
-01 text           PIC X(50).
-01 offset         PIC 99.
+01 txt           PIC X(50).
 01 encrypted-str  PIC X(50).
 
 PROCEDURE DIVISION.
   DISPLAY "Message to encrypt: " NO ADVANCING
   ACCEPT text
 
-  MOVE FUNCTION encrypt(plaintext) TO encrypted-str
+  MOVE FUNCTION encrypt(txt) TO encrypted-str
   DISPLAY "Encrypted: " encrypted-str
   DISPLAY "Decrypted: " FUNCTION decrypt(encrypted-str)
   .
