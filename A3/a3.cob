@@ -1,55 +1,44 @@
-PROGRAM-ID. A3.
-
-ENVIRONMENT DIVISION.
-CONFIGURATION SECTION.
-REPOSITORY.
-    FUNCTION encrypt
-    FUNCTION decrypt
-    .
-
-DATA DIVISION.
-WORKING-STORAGE SECTION.
-01 txt              PIC X(50).
-01 encrypted-str    PIC X(50).
-
-PROCEDURE DIVISION.
-  DISPLAY "Message to encrypt: " NO ADVANCING
-  ACCEPT txt
-
-  MOVE FUNCTION encrypt(txt) TO encrypted-str
-  DISPLAY "Encrypted: " encrypted-str
-  DISPLAY "Decrypted: " FUNCTION decrypt(encrypted-str)
-  .
-END PROGRAM A3.
-
-FUNCTION-ID. encrypt.
-DATA DIVISION.
-LOCAL-STORAGE SECTION.
-01 i              PIC 9(3).
-01 a              PIC 9(3).
-
-LINKAGE SECTION.
-01 str            PIC X(50).
-01 encrypted-str  PIC X(50).
-
-PROCEDURE DIVISION USING str RETURNING encrypted-str.
-  MOVE str TO encrypted-str
-  PERFORM VARYING i FROM 1 BY 1 UNTIL i > FUNCTION LENGTH(str)
-    IF encrypted-str (i:1) IS NOT ALPHABETIC OR encrypted-str (i:1) = SPACE
-      EXIT PERFORM CYCLE
-    END-IF
-
-    IF encrypted-str (i:1) IS ALPHABETIC-UPPER
-      MOVE FUNCTION ORD("A") to a
-    ELSE
-      MOVE FUNCTION ORD("a") to a
-    END-IF
-
-    MOVE FUNCTION CHAR(FUNCTION MOD(FUNCTION ORD(encrypted-str (i:1))
+0000010 PROGRAM-ID. A3.
+0000020 ENVIRONMENT DIVISION.
+0000030 CONFIGURATION SECTION.
+0000040 REPOSITORY.
+0000050     FUNCTION encrypt
+0000060     FUNCTION decrypt
+0000070     .
+0000080 DATA DIVISION.
+0000090 WORKING-STORAGE SECTION.
+0000100 01 txt              PIC X(50).
+0000110 01 encrypted-str    PIC X(50).
+0000120 PROCEDURE DIVISION.
+0000130   DISPLAY "Message to encrypt: " NO ADVANCING
+0000140   ACCEPT txt
+0000150   MOVE FUNCTION encrypt(txt) TO encrypted-str
+0000160   DISPLAY "Encrypted: " encrypted-str
+0000170   DISPLAY "Decrypted: " FUNCTION decrypt(encrypted-str)  .
+0000180 END PROGRAM A3.
+0000190 FUNCTION-ID. encrypt.
+0000200 DATA DIVISION.
+0000210 LOCAL-STORAGE SECTION.
+0000220 01 i              PIC 9(3).
+0000230 01 a              PIC 9(3).
+0000240 LINKAGE SECTION.
+0000250 01 str            PIC X(50).
+0000260 01 encrypted-str  PIC X(50).
+0000270 PROCEDURE DIVISION USING str RETURNING encrypted-str.
+0000280   MOVE str TO encrypted-str
+0000290   PERFORM VARYING i FROM 1 BY 1 UNTIL i > FUNCTION LENGTH(str)
+0000300     IF encrypted-str (i:1) IS NOT ALPHABETIC OR encrypted-str (i:1) = SPACE
+0000310       EXIT PERFORM CYCLE
+0000320     END-IF
+0000330     IF encrypted-str (i:1) IS ALPHABETIC-UPPER
+0000340       MOVE FUNCTION ORD("A") to a
+0000350     ELSE
+0000360       MOVE FUNCTION ORD("a") to a
+0000370     END-IF
+0000380     MOVE FUNCTION CHAR(FUNCTION MOD(FUNCTION ORD(encrypted-str (i:1))
       -a + (i-1), 26) + a) TO encrypted-str(i:1)
-  END-PERFORM
-  .
-END FUNCTION encrypt.
+0000390   END-PERFORM  .
+0000400 END FUNCTION encrypt.
 
 FUNCTION-ID. decrypt.
 
