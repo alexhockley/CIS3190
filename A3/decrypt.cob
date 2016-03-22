@@ -33,7 +33,7 @@ procedure division using str, res.
                 - a - offset, 26) + a)
             TO decrypted-str (i:1)
         add 1 to offset
-        if decrypted-str(i:1) IS NOT SPACE
+        if decrypted-str(i:1) NOT = SPACE
           MOVE decrypted-str(i:1) to res(strpos:1)
           add 1 to strpos
         end-if
