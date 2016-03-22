@@ -1,13 +1,15 @@
-IDENTIFICATION DIVISION.
-PROGRAM-ID. encrypt.
+identification division.
+program-id. encrypt.
+environment division.
 
-DATA DIVISION.
-  WORKING-STORAGE SECTION.
-    LINKAGE SECTION.
-    01 str            PC X(50).
-    01 encrypted-str  PC X(50).
+data division.
+working-storage section.
 
-PROCEDURE DIVISION USING str, encrypted-str
-  DISPLAY 'In encrypt'.
-  MOVE str TO encrypted-str.
-  goback.
+linkage section.
+77 g1 pic 99.
+77 g2 pic 99.
+77 res pic 9(3).
+
+procedure division using g1, g2, res.
+ compute res = g1 + g2.
+ goback.
