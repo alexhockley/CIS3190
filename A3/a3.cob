@@ -35,8 +35,7 @@
 000035     ELSE
 000036       MOVE FUNCTION ORD("a") to a
 000037     END-IF
-000038     MOVE FUNCTION CHAR(FUNCTION MOD(FUNCTION ORD(encrypted-str (i:1))
-      -a + (i-1), 26) + a) TO encrypted-str(i:1)
+000038     MOVE FUNCTION CHAR(FUNCTION MOD(FUNCTION ORD(encrypted-str (i:1))-a + (i-1), 26) + a) TO encrypted-str(i:1)
 000039   END-PERFORM  .
 000040 END FUNCTION encrypt.
 000041 FUNCTION-ID. decrypt.
@@ -55,8 +54,7 @@
 000054     ELSE
 000055       MOVE FUNCTION ORD("a") to a
 000056     END-IF
-000057     MOVE FUNCTION CHAR(FUNCTION MOD(FUNCTION ORD(decrypted-str (i:1))
-      a - (i-1), 26) - a)
+000057     MOVE FUNCTION CHAR(FUNCTION MOD(FUNCTION ORD(decrypted-str (i:1))a - (i-1), 26) - a)
 000058       TO decrypted-str(i:1)
 000059   END-PERFORM
 000060   .
