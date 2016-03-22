@@ -39,30 +39,25 @@
       -a + (i-1), 26) + a) TO encrypted-str(i:1)
 0000390   END-PERFORM  .
 0000400 END FUNCTION encrypt.
-
-FUNCTION-ID. decrypt.
-
-DATA DIVISION.
-LINKAGE SECTION.
-01 str              PIC X(50).
-01 decrypted-str    PIC X(50).
-
-PROCEDURE DIVISION USING str RETURNING decrypted-str.
-  MOVE str to decrypted-str.
-  PERFORM VARYING i FROM 1 BY 1 UNTIL i > FUNCTION LENGTH(str)
-    IF decrypted-str (i:1) IS NOT ALPHABETIC OR decrypted-str (i:1) = SPACE
-      EXIT PERFORM CYCLE
-    END-IF
-
-    IF decrypted-str (i:1) IS ALPHABETIC-UPPER
-      MOVE FUNCTION ORD("A") to a
-    ELSE
-      MOVE FUNCTION ORD("a") to a
-    END-IF
-
-    MOVE FUNCTION CHAR(FUNCTION MOD(FUNCTION ORD(decrypted-str (i:1))
+0000410 FUNCTION-ID. decrypt.
+0000420 DATA DIVISION.
+0000430 LINKAGE SECTION.
+0000440 01 str              PIC X(50).
+0000450 01 decrypted-str    PIC X(50).
+0000460 PROCEDURE DIVISION USING str RETURNING decrypted-str.
+0000470   MOVE str to decrypted-str.
+0000480   PERFORM VARYING i FROM 1 BY 1 UNTIL i > FUNCTION LENGTH(str)
+0000490     IF decrypted-str (i:1) IS NOT ALPHABETIC OR decrypted-str (i:1) = SPACE
+0000500       EXIT PERFORM CYCLE
+0000510     END-IF
+0000520     IF decrypted-str (i:1) IS ALPHABETIC-UPPER
+0000530       MOVE FUNCTION ORD("A") to a
+0000540     ELSE
+0000550       MOVE FUNCTION ORD("a") to a
+0000560     END-IF
+0000570     MOVE FUNCTION CHAR(FUNCTION MOD(FUNCTION ORD(decrypted-str (i:1))
       a - (i-1), 26) - a)
-      TO decrypted-str(i:1)
-  END-PERFORM
-  .
-END FUNCTION decrypt.
+0000580       TO decrypted-str(i:1)
+0000590   END-PERFORM
+0000600   .
+0000610 END FUNCTION decrypt.
