@@ -7,23 +7,21 @@ working-storage section.
 01 a pic 9(3).
 01 i pic 9(3).
 01 offset pic 9(3).
-
+01 strpos pic 9(3).
+77 encrypted-str PIC X(50).
 
 linkage section.
 77 str pic X(50).
 77 encrypted-str pic X(50).
+77 res x(50).
 
-procedure division using str, encrypted-str.
+procedure division using str, res.
  move str to encrypted-str.
  move 0 to offset.
  PERFORM VARYING i FROM 1 BY 1 UNTIL i > FUNCTION LENGTH(str)
-        IF encrypted-str (i:1) IS NOT ALPHABETIC
+        IF encrypted-str (i:1) IS NOT ALPHABETIC OR encrypted-str(i:1) = SPACE
             EXIT PERFORM CYCLE
         END-IF
-        if encrypted-str(i:1) = SPACE
-          subtract 1 from i
-          exit perform cycle
-        end-if
 
         IF encrypted-str (i:1) IS ALPHABETIC-UPPER
             MOVE FUNCTION ORD("A") TO a
@@ -35,6 +33,10 @@ procedure division using str, encrypted-str.
                 - a + offset, 26) + a)
             TO encrypted-str (i:1)
         add 1 to offset
+        if encrypted-str(i:1) IS NOT SPACE
+          MOVE encrypted-str(i:1) to res(strpos:1)
+          add 1 to strpos
+        end-if
     END-PERFORM
     .
  goback.
