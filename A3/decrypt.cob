@@ -1,13 +1,14 @@
-IDENTIFICATION DIVISION.
-PROGRAM-ID. decrypt.
+identification division.
+program-id. decrypt.
+environment division.
 
-DATA DIVISION.
-  WORKING-STORAGE SECTION.
-    LINKAGE SECTION.
-    01 str            PC X(50).
-    01 decrypted-str  PC X(50).
+data division.
+working-storage section.
 
-PROCEDURE DIVISION USING str, decrypted-str
-  DISPLAY 'In decrypt'.
-  MOVE str TO decrypted-str.
-  goback.
+linkage section.
+77 str pic X(50).
+77 encrypted-str pic X(50).
+
+procedure division using str, decrypted-str.
+ move str to decrypted-str.
+ goback.
