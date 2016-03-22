@@ -9,5 +9,6 @@ WORKING-STORAGE SECTION.
 PROCEDURE DIVISION.
     DISPLAY "Message to encrypt: " NO ADVANCING
     ACCEPT txt
-    DISPLAY "Message: " txt
+    CALL 'encrypt' USING txt, encrypted-str    
+    DISPLAY "encrypted: " encrypted-str
     STOP RUN.
