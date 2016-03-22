@@ -15,4 +15,4 @@ PROCEDURE DIVISION.
     DISPLAY "original: "  txt
     DISPLAY "encrypted: " encrypted-str
     DISPLAY "decrypted: " decrypted-str
-    STOP RUN.
+STOP RUN.
