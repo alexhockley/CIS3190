@@ -17,6 +17,7 @@ linkage section.
 procedure division using str, res.
  move str to encrypted-str.
  move 0 to offset.
+ move 1 to strpos.
  PERFORM VARYING i FROM 1 BY 1 UNTIL i > FUNCTION LENGTH(str)
         IF encrypted-str (i:1) IS NOT ALPHABETIC OR encrypted-str(i:1) = SPACE
             EXIT PERFORM CYCLE
