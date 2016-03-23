@@ -30,7 +30,7 @@ PROCEDURE DIVISION.
           move in-text to txt
       end-read
     end-perform
-    close in-file
+    close input-file
     display 'read: ' txt.
 
     call 'encrypt' using txt, encrypted-str
