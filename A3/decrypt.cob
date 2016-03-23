@@ -1,3 +1,7 @@
+* Alex Hockley, March 23 2016, CIS3190 Assignment 3
+* COBOL Cypher
+* decrypt is the function used to decrypt some text
+
 identification division.
 program-id. decrypt.
 environment division.
@@ -19,25 +23,26 @@ procedure division using str, res.
  move str to decrypted-str.
  move 0 to offset.
  move 1 to strpos.
- PERFORM VARYING i FROM 1 BY 1 UNTIL i > FUNCTION LENGTH(str)
-        IF decrypted-str (i:1) IS NOT ALPHABETIC OR decrypted-str(i:1) = SPACE
-            EXIT PERFORM CYCLE
-        END-IF
+ *loop through the whole string decrypting each alpha character
+ perform varying i from 1 by 1 until i > function length(str)
+        if decrypted-str (i:1) is not alphabetic or decrypted-str(i:1) = space
+            exit perform cycle
+        end-if
 
-        IF decrypted-str (i:1) IS ALPHABETIC-UPPER
-            MOVE FUNCTION ORD("A") TO a
-        ELSE
-            MOVE FUNCTION ORD("a") TO a
-        END-IF
+        if decrypted-str (i:1) is alphabetic-upper
+            move function ord("A") to a
+        else
+            move function ord("a") TO a
+        end-if
 
-        MOVE FUNCTION CHAR(FUNCTION MOD(FUNCTION ORD(decrypted-str (i:1))
+        move function char(function mod(function ord(decrypted-str (i:1))
                 - a - offset, 26) + a)
-            TO decrypted-str (i:1)
+            to decrypted-str (i:1)
         add 1 to offset
-        if decrypted-str(i:1) NOT = SPACE
-          MOVE decrypted-str(i:1) to res(strpos:1)
+        if decrypted-str(i:1) not = space
+          move decrypted-str(i:1) to res(strpos:1)
           add 1 to strpos
         end-if
-    END-PERFORM
+    end-perform
     .
  goback.
