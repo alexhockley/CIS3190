@@ -20,7 +20,15 @@ PROCEDURE DIVISION.
     ACCEPT inputfile
     display 'input file: ' inputfile
     open input input-file.
-    read input-file into txt.
+    perform until end-of-file
+      read input-file
+        at end
+          set end-of-file to true
+        not at end
+          perform find-string
+      end read
+    end perform
+    close in-file
     display 'read: ' txt.
 
     call 'encrypt' using txt, encrypted-str
