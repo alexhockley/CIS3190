@@ -9,7 +9,7 @@ file-control.
 DATA DIVISION.
 file section.
 fd input-file.
-01 in-text           PIC X(50000);
+01 in-text           PIC X(50000).
 WORKING-STORAGE SECTION.
 01  txt              PIC X(50000).
 01  inputfile        PIC X(50).
