@@ -9,9 +9,8 @@ working-storage section.
 linkage section.
 77 str      pic X(5000).
 
-procedure division using str
-
- PERFORM VARYING i FROM 1 BY 1 UNTIL i > FUNCTION LENGTH(str)
+procedure division using str.
+ perform varying i from 1 by 1 until i > function length(str)
  if str(i:1) = SPACE
    exit perform cycle
  end-if
