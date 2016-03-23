@@ -26,7 +26,7 @@ procedure division using str, res.
 *loop through the whole string, encrypting each alpha character
  perform varying i from 1 by 1 until i > function length(str)
         if encrypted-str (i:1) is not alphabetic or encrypted-str(i:1) = space
-            exit perform cylce
+            exit perform cycle
         end-if
 
         if encrypted-str (i:1) is alphabetic-upper
