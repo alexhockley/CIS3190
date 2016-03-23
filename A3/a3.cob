@@ -3,6 +3,9 @@ PROGRAM-ID. A3.
 ENVIRONMENT DIVISION.
 CONFIGURATION SECTION.
 DATA DIVISION.
+file section.
+fd input.
+01 input-file.
 WORKING-STORAGE SECTION.
 01  txt              PIC X(50000).
 01  inputfile        PIC X(50).
@@ -11,7 +14,7 @@ WORKING-STORAGE SECTION.
 PROCEDURE DIVISION.
     DISPLAY "File to process: " NO ADVANCING
     ACCEPT inputfile
-    call 'fileread' using txt, inputfile
+
     call 'encrypt' using txt, encrypted-str
     call 'decrypt' using txt, decrypted-str
     DISPLAY "original: "  txt

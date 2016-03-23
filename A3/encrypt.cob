@@ -15,6 +15,7 @@ linkage section.
 77 res pic x(50000).
 
 procedure division using str, res.
+ display 'Encrypting'.
  move str to encrypted-str.
  move 0 to offset.
  move 1 to strpos.
