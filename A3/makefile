@@ -1,8 +1,8 @@
-all: encrypt decrypt
+all: encrypt decrypt smartoutput
 	cobc -x -free -Wall a3.cob
 encrypt:
 	cobc -m -free -Wall encrypt.cob
 decrypt:
 	cobc -m -free -Wall decrypt.cob
-fileread:
-	cobc -m -free -Wall fileread.cob
+smartoutput:
+	cobc -m -free -Wall smartoutput.cob

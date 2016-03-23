@@ -35,7 +35,9 @@ PROCEDURE DIVISION.
 
     call 'encrypt' using txt, encrypted-str
     call 'decrypt' using txt, decrypted-str
-    DISPLAY "original: "  txt
-    DISPLAY "encrypted: " encrypted-str
-    DISPLAY "decrypted: " decrypted-str
+    DISPLAY "original: " txt
+    DISPLAY "encrypted: " NO ADVANCING
+    call 'smartoutput' using encrypted-str
+    DISPLAY "decrypted: " NO ADVANCING
+    call 'smartoutput' using decrypted-str
 STOP RUN.
