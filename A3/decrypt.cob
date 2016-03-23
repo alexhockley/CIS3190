@@ -4,10 +4,10 @@ environment division.
 
 data division.
 working-storage section.
-01 a pic 9(3).
-01 i pic 9(3).
-01 offset pic 9(3).
-01 strpos pic 9(3).
+01 a pic 9(15).
+01 i pic 9(15).
+01 offset pic 9(15).
+01 strpos pic 9(15).
 01 decrypted-str PIC X(5000).
 
 linkage section.
