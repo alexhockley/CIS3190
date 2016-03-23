@@ -9,8 +9,8 @@ working-storage section.
 linkage section.
 77 str      pic X(5000).
 
-
 procedure division using str
+
  PERFORM VARYING i FROM 1 BY 1 UNTIL i > FUNCTION LENGTH(str)
  if str(i:1) = SPACE
    exit perform cycle
@@ -18,5 +18,5 @@ procedure division using str
   display str(i:1) NO ADVANCING
  end-perform
  .
- display ''
+ display ''.
 goback.
