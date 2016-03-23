@@ -24,13 +24,14 @@ PROCEDURE DIVISION.
     open input input-file.
     perform until end-of-file
       read input-file
-        move in-text to
         at end
           set end-of-file to true
-      end read
-    end perform
+        not at end
+          move in-text to txt
+      end-read
+    end-perform
     close in-file
-    display 'read: ' in-text.
+    display 'read: ' txt.
 
     call 'encrypt' using txt, encrypted-str
     call 'decrypt' using txt, decrypted-str
