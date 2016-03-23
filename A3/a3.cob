@@ -1,11 +1,15 @@
 IDENTIFICATION DIVISION.
 PROGRAM-ID. A3.
 ENVIRONMENT DIVISION.
-CONFIGURATION SECTION.
+input-output section.
+file-control.
+  select input-file assign to inputfile
+  organization is line sequential.
+
 DATA DIVISION.
 file section.
-fd input.
-01 input-file.
+fd input-file.
+01 in-text           PIC X(50000);
 WORKING-STORAGE SECTION.
 01  txt              PIC X(50000).
 01  inputfile        PIC X(50).
@@ -14,6 +18,10 @@ WORKING-STORAGE SECTION.
 PROCEDURE DIVISION.
     DISPLAY "File to process: " NO ADVANCING
     ACCEPT inputfile
+    display 'input file: ' inputfile
+    open input input-file.
+    read input-file into txt.
+    display 'read: ' txt.
 
     call 'encrypt' using txt, encrypted-str
     call 'decrypt' using txt, decrypted-str
