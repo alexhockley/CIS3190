@@ -29,7 +29,7 @@ procedure division using str, res.
             exit perform cylce
         end-if
 
-        if encrypted-str (i:1) IS ALPHABETIC-UPPER
+        if encrypted-str (i:1) is alphabetic-upper
             move function ord("A") to a
         else
             move function ord("a") to a
