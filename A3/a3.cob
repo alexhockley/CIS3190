@@ -31,11 +31,11 @@ PROCEDURE DIVISION.
       end-read
     end-perform
     close input-file
-    display 'read: ' txt.
 
     call 'encrypt' using txt, encrypted-str
     call 'decrypt' using txt, decrypted-str
     DISPLAY "original: " txt
+    call 'smartoutput' using encrypted-str
     DISPLAY "encrypted: " NO ADVANCING
     call 'smartoutput' using encrypted-str
     DISPLAY "decrypted: " NO ADVANCING
