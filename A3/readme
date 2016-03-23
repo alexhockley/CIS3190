@@ -11,3 +11,5 @@ New line characters in the input file make stuff not work
 Hard limit of 5000 characters
 Original text output has spaces stripped, just so it doesn't have a bunch of garbage at the end
 Files with numbers may behave... oddly.
+Theres an assload of warnings about dereferencing type-punned pointer that I couldnt figure out how to fix, i used the -O flag to
+suppress them.
