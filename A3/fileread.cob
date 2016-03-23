@@ -6,7 +6,7 @@ data division.
 working-storage section.
 
 linkage section.
-77 str      pic X(50000).
+77 str      pic X(5000).
 77 filename pic X(50).
 
 procedure division using str, filename.

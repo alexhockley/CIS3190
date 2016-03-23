@@ -9,12 +9,12 @@ file-control.
 DATA DIVISION.
 file section.
 fd input-file.
-01 in-text           PIC X(50000).
+01 in-text           PIC X(5000).
 WORKING-STORAGE SECTION.
-01  txt              PIC X(50000).
+01  txt              PIC X(5000).
 01  inputfile        PIC X(50).
-01  encrypted-str    PIC X(50000).
-01  decrypted-str    PIC X(50000).
+01  encrypted-str    PIC X(5000).
+01  decrypted-str    PIC X(5000).
 01  end-of-file-switch  PIC XXX value 'NO '.
   88  end-of-file      value 'YES'.
 PROCEDURE DIVISION.
@@ -24,12 +24,13 @@ PROCEDURE DIVISION.
     open input input-file.
     perform until end-of-file
       read input-file
+        move in-text to
         at end
           set end-of-file to true
       end read
     end perform
     close in-file
-    display 'read: ' txt.
+    display 'read: ' in-text.
 
     call 'encrypt' using txt, encrypted-str
     call 'decrypt' using txt, decrypted-str
