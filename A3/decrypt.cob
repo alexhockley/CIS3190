@@ -23,7 +23,7 @@ procedure division using str, res.
  move str to decrypted-str.
  move 0 to offset.
  move 1 to strpos.
- *loop through the whole string decrypting each alpha character
+*loop through the whole string decrypting each alpha character
  perform varying i from 1 by 1 until i > function length(str)
         if decrypted-str (i:1) is not alphabetic or decrypted-str(i:1) = space
             exit perform cycle

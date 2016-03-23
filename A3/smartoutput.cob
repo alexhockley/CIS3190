@@ -15,7 +15,7 @@ linkage section.
 77 str      pic X(5000).
 
 procedure division using str.
- *loop through the string, printing out the non-space characters
+*loop through the string, printing out the non-space characters
  perform varying i from 1 by 1 until i > function length(str)
  if str(i:1) = space
    exit perform cycle
