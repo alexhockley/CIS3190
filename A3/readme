@@ -1,0 +1,13 @@
+Alex Hockley
+0758114
+March 23, 2016
+CIS3190
+Assignment 3
+
+Cobol Caesar Cypher
+
+Deficiencies:
+New line characters in the input file make stuff not work
+Hard limit of 5000 characters
+Original text output has spaces stripped, just so it doesn't have a bunch of garbage at the end
+Files with numbers may behave... oddly.

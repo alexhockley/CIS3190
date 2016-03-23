@@ -24,10 +24,12 @@ working-storage section.
   88  end-of-file      value 'YES'.
 
 procedure division.
+*get the filename and stuff
     display "File to process: " no advancing
     accept inputfile
     display 'input file: ' inputfile
     open input input-file.
+*read to the end of the file
     perform until end-of-file
       read input-file
         at end
@@ -37,9 +39,11 @@ procedure division.
       end-read
     end-perform
     close input-file
-
+*perform the encryption and decryption
     call 'encrypt' using txt, encrypted-str
     call 'decrypt' using txt, decrypted-str
+
+*output the results nicely
     display "original: " no advancing
     call 'smartoutput' using txt
     display "encrypted: " no advancing
