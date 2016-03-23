@@ -15,6 +15,8 @@ WORKING-STORAGE SECTION.
 01  inputfile        PIC X(50).
 01  encrypted-str    PIC X(50000).
 01  decrypted-str    PIC X(50000).
+01  end-of-file-switch  PIC XXX value 'NO '.
+  88  end-of-file      value 'YES'.
 PROCEDURE DIVISION.
     DISPLAY "File to process: " NO ADVANCING
     ACCEPT inputfile
@@ -24,8 +26,6 @@ PROCEDURE DIVISION.
       read input-file
         at end
           set end-of-file to true
-        not at end
-          perform find-string
       end read
     end perform
     close in-file
