@@ -36,18 +36,19 @@ procedure division.
           set end-of-file to true
         not at end
           move in-text to txt
+*perform the encryption and decryption
+            call 'encrypt' using txt, encrypted-str
+            call 'decrypt' using txt, decrypted-str
+
+*output the results nicely
+            display "original: " no advancing
+            call 'smartoutput' using txt
+            display "encrypted: " no advancing
+            call 'smartoutput' using encrypted-str
+            display "decrypted: " no advancing
+            call 'smartoutput' using decrypted-str
       end-read
     end-perform
     close input-file
-*perform the encryption and decryption
-    call 'encrypt' using txt, encrypted-str
-    call 'decrypt' using txt, decrypted-str
 
-*output the results nicely
-    display "original: " no advancing
-    call 'smartoutput' using txt
-    display "encrypted: " no advancing
-    call 'smartoutput' using encrypted-str
-    display "decrypted: " no advancing
-    call 'smartoutput' using decrypted-str
 stop run.
